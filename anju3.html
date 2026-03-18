@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraCraft | Handcarved Wood & Wool Masks</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS STYLES */
+        :root {
+            --bg-color: #f9f7f2;
+            --primary-brown: #5d4037;
+            --accent-gold: #c6a664;
+            --text-main: #2d2d2d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        header {
+            padding: 2rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-brown);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 0 5%;
+        }
+
+        /* Image Display Logic */
+        .image-viewer {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .main-display {
+            width: 100%;
+            height: 600px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        /* This simulates the mask hanging on a wall */
+        .main-display.wall-mode {
+            background-image: url('https://images.unsplash.com/photo-1615873968403-89e068628265?auto=format&fit=crop&q=80&w=1600'); /* Living room wall */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #productImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .wall-mode #productImage {
+            width: 30%; /* Scales the mask to look realistic on a wall */
+            height: auto;
+            box-shadow: 15px 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .view-toggle {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view {
+            padding: 12px 24px;
+            border: 1px solid var(--primary-brown);
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-view.active {
+            background: var(--primary-brown);
+            color: white;
+        }
+
+        /* Product Details */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 4px;
+        }
+
+        .spec-item span {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--primary-brown);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AuraCraft</div>
+        <nav>Collection • Artisans • Shipping</nav>
+    </header>
+
+    <div class="container">
+        <div class="image-viewer">
+            <div id="displayFrame" class="main-display">
+                <img id="productImage" src="D:\anju1\buddha3.jpg" alt="Wooden Mask">
+            </div>
+            
+            <div class="view-toggle">
+                <button id="studioBtn" class="btn-view active" onclick="setView('studio')">Studio Detail</button>
+                <button id="wallBtn" class="btn-view" onclick="setView('wall')">In-Room View</button>
+            </div>
+        </div>
+
+        <div class="product-content">
+            <h1>Serene Ancestor Mask</h1>
+            <p class="price">$380.00</p>
+            
+            <p>A fusion of hand-carved **Cedar wood** and organic **Tibetan wool**. This piece represents the harmony between the rigid earth and soft clouds.</p>
+
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <span>Dimensions</span>
+                    <strong>28" x 14" x 5"</strong>
+                </div>
+                <div class="spec-item">
+                    <span>Material</span>
+                    <strong>Cedar & Raw Wool</strong>
+                </div>
+                <div class="spec-item">
+                    <span>Colorway</span>
+                    <strong>Ebony & Natural Cream</strong>
+                </div>
+                <div class="spec-item">
+                    <span>Weight</span>
+                    <strong>4.2 lbs</strong>
+                </div>
+            </div>
+
+            <button class="buy-btn">Acquire This Piece</button>
+            
+            <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem;">
+                <small>Each piece is unique. Handcrafted in 14 days. Includes wall mounting hardware.</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* JAVASCRIPT LOGIC */
+        function setView(mode) {
+            const frame = document.getElementById('displayFrame');
+            const studioBtn = document.getElementById('studioBtn');
+            const wallBtn = document.getElementById('wallBtn');
+
+            if (mode === 'wall') {
+                frame.classList.add('wall-mode');
+                wallBtn.classList.add('active');
+                studioBtn.classList.remove('active');
+            } else {
+                frame.classList.remove('wall-mode');
+                studioBtn.classList.add('active');
+                wallBtn.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
